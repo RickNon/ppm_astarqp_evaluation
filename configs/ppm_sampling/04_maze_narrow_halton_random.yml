@@ -1,0 +1,22 @@
+io:
+  world_file: ../../data/synthetic/worlds/04_maze_narrow.world
+
+sensor:
+  max_range_m: 100
+  angle_deg: 360
+  position_randomize: true
+  sampling_method: halton
+  halton_scramble: true
+  random_seed: 1 # used 1, 2, 3, 4, 5 for different runs
+  num_sampling: 300
+
+visualize: true
+
+evaluation:
+  # change the output paths for each seed
+  out_area_csv: ../../results/exp1_map/04_maze_narrow/halton_random/01/ppm_area.csv
+  out_plot: ../../results/exp1_map/04_maze_narrow/halton_random/01/ppm_area_plot.png
+  out_sensor_csv: ../../results/exp1_map/04_maze_narrow/halton_random/01/ppm_sensor.csv
+  out_prox_csv: ../../results/exp1_map/04_maze_narrow/halton_random/01/ppm_prox.csv
+  log_output_numbers: [10, 50, 100]
+

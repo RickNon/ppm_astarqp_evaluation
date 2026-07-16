@@ -1,0 +1,3 @@
+[submodule "experiments/exp1/map_generation/ppm/modules/Polygonal-Proximity-Map"]
+	path = experiments/exp1/map_generation/ppm/modules/Polygonal-Proximity-Map
+	url = https://github.com/RickNon/Polygonal-Proximity-Map.git

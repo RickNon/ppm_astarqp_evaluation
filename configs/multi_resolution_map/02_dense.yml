@@ -1,0 +1,53 @@
+input:
+  world_file: "../../data/synthetic/worlds/02_dense.world"
+
+model_filter:
+  wall_prefixes: ["outer_wall_"]
+  obstacle_prefixes: ["obstacle_", "maze_wall_"]
+  ignore_models: ["ground_plane", "sun"]
+
+quadtree:
+  min_resolution: 0.05
+  max_depth: 20
+  treat_mixed_as_occupied_at_min_resolution: true
+
+uniform_grid:
+  enable: true
+  resolution: 0.05
+  export_csv: false
+  export_visualization: false
+  coverage_targets: [0.5, 0.8, 0.9]
+  treat_mixed_as_occupied: true
+  nav2:
+    output_dir: "../../data/synthetic/occupancy_grids/02_dense"
+    mode: "trinary"
+    negate: 0
+    occupied_thresh: 0.65
+    free_thresh: 0.196
+
+analysis:
+  resolution_sweep:
+    enable: true
+    min_resolutions: [1.0, 0.5, 0.1, 0.05]
+    export_csv: true
+    export_plot: true
+
+output:
+  output_dir: "../../results/exp1_map/02_dense/multi_resolution_map"
+  export_leaf_csv: true
+  export_summary_json: true
+  export_log_txt: true
+
+visualization:
+  enable: true
+  formats: ["png", "eps"]
+  figure_size_inch: 8.0
+  dpi: 200
+  draw_obstacles: false
+  draw_quadtree_leaves: true
+  show_axes: true
+  occupied_color: "black"
+  free_color: "white"
+  boundary_color: "gray"
+  wall_color: "black"
+  line_width: 0.3

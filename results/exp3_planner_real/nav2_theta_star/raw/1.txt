@@ -1,0 +1,46 @@
+{
+  "timestamp_unix": 1783933074.1244276,
+  "success": false,
+  "status": "RESULT_TIMEOUT",
+  "planning_time_sec": 1.0016243660029431,
+  "memory_rss_kb_baseline": 115824,
+  "memory_peak_rss_kb": 265784,
+  "memory_rss_kb_max": 265784,
+  "start_xy": [
+    0.0,
+    0.0
+  ],
+  "goal_xy": [
+    75.0,
+    50.0
+  ],
+  "frame_id": "map",
+  "selected_start_yaw_rad": 0.0,
+  "selected_goal_yaw_rad": 0.0,
+  "path_waypoints": [],
+  "path_waypoint_count": 0,
+  "path_length_m": 0.0,
+  "curvature_max_1_per_m": 0.0,
+  "curvature_mean_1_per_m": 0.0,
+  "waypoint_density_1_per_m": 0.0,
+  "notes": {
+    "yaw_free_expected": true,
+    "auto_start_yaw": false,
+    "auto_goal_yaw": false,
+    "yaw_samples": 1,
+    "max_planning_attempts": 1,
+    "planning_attempt_count": 1,
+    "planning_attempts": [
+      {
+        "start_yaw_rad": 0.0,
+        "goal_yaw_rad": 0.0,
+        "success": false,
+        "status": "RESULT_TIMEOUT",
+        "planning_time_sec": 1.0016243660029431
+      }
+    ],
+    "planner_pid_found": true,
+    "planner_pid": 57010,
+    "memory_peak_source": "VmHWM"
+  }
+}

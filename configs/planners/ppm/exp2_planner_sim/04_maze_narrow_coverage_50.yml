@@ -1,0 +1,38 @@
+io:
+  ppm_sensor_csv: ../../../../results/exp1_map/04_maze_narrow/coverage_ratio_50/ppm_sensor.csv
+  ppm_prox_csv: ../../../../results/exp1_map/04_maze_narrow/coverage_ratio_50/ppm_prox.csv
+  world_file: ../../../../data/synthetic/worlds/04_maze_narrow.world
+  output_dir: ../../../../results/exp2_planner_sim/04_maze_narrow/coverage_50
+
+experiment:
+  random_seed: 4
+  num_trials: 100
+
+planner:
+  methods:
+    - astar_qp_base
+    - astar_qp_wide_space
+    - astar_qp_full
+    - bitstar_ppm
+  qp_solver: OSQP_NATIVE
+  smoothing_mu: 1.0
+
+bitstar_ppm:
+  time_limit_s: 5.0
+  range_m:
+  random_seed: 42
+  simplify_solution: true
+  state_validity_resolution:
+
+sampling:
+  min_start_goal_distance: 5.0
+  max_sampling_attempts: 10000
+  bounds_margin_m: 0.0
+
+metrics:
+  resample_spacing_m: 0.1
+  low_clearance_threshold_m: 0.5
+
+plot:
+  enable: true
+  output_dir: ../../../../results/exp2_planner_sim/04_maze_narrow/coverage_50/plots

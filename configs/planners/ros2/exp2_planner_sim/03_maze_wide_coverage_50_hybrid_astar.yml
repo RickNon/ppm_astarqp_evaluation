@@ -1,0 +1,31 @@
+smac_benchmark:
+  io:
+    map_yaml: data/synthetic/occupancy_grids/03_maze_wide/coverage_50/03_maze_wide_coverage_50_r_0p05.yaml
+    start_goal_csv: results/exp2_planner_sim/03_maze_wide/coverage_50/start_goal_pairs.csv
+    output_dir: results/exp2_planner_sim/03_maze_wide/coverage_50
+    world_file: data/synthetic/worlds/03_maze_wide.world
+  nav2:
+    planner_params: experiments/exp2/ros2_ws/src/smac_benchmark/config/planner_server_hybrid_astar.yaml
+    costmap_params: experiments/exp2/ros2_ws/src/smac_benchmark/config/costmap_inflation_on.yaml
+    planner_cmd_substr: planner_server
+  planning:
+    frame: map
+    timeout_sec: 1.0
+    start_yaw: 0.0
+    goal_yaw: 0.0
+    auto_start_yaw: true
+    auto_goal_yaw: false
+    yaw_samples: 8
+    max_planning_attempts: 8
+  analysis:
+    resample_spacing_m: 0.1
+    low_clearance_threshold_m: 0.5
+  output:
+    method_name: nav2_hybrid_astar
+    save_tmp_compatible_outputs: true
+    save_tmp_compatible_plots: false
+    plots_dirname: plots
+    save_individual_plots: false
+    raw_output_dirname: raw
+    summary_csv_name: run_summary.csv
+

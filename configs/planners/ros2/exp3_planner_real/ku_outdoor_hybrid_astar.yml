@@ -1,0 +1,30 @@
+smac_benchmark:
+  io:
+    map_yaml: data/real/occupancy_grids/ku_outdoor.yaml
+    start_goal_csv: data/real/start_goal_pairs/ku_outdoor.csv
+    output_dir: results/exp3_planner_real
+  nav2:
+    planner_params: experiments/exp2/ros2_ws/src/smac_benchmark/config/planner_server_hybrid_astar.yaml
+    costmap_params: experiments/exp2/ros2_ws/src/smac_benchmark/config/costmap_inflation_on.yaml
+    planner_cmd_substr: planner_server
+  planning:
+    frame: map
+    timeout_sec: 3.0
+    start_yaw: 0.0
+    goal_yaw: 0.0
+    auto_start_yaw: true
+    auto_goal_yaw: true
+    yaw_samples: 16
+    max_planning_attempts: 256
+  analysis:
+    resample_spacing_m: 0.1
+    low_clearance_threshold_m: 0.5
+  output:
+    method_name: nav2_hybrid_astar
+    save_tmp_compatible_outputs: true
+    save_tmp_compatible_plots: false
+    plots_dirname: plots
+    save_individual_plots: true
+    raw_output_dirname: raw
+    summary_csv_name: run_summary.csv
+

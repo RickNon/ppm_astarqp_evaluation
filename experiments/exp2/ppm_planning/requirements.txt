@@ -1,0 +1,6 @@
+-r ../../exp1/map_generation/requirements.txt
+cvxpy
+networkx
+osqp
+pandas
+

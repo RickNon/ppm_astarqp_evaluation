@@ -1,0 +1,8 @@
+Parsed models: 111
+Obstacle count: 107
+Inner domain: x=[0.000, 30.000], y=[0.000, 30.000]
+Outer domain: x=[-0.500, 30.500], y=[-0.500, 30.500]
+Leaf count: 84061
+Free leaves: 28222
+Occupied leaves: 55839
+Mixed leaves: 0

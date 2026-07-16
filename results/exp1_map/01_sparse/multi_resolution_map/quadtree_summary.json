@@ -1,0 +1,28 @@
+{
+  "num_models": 124,
+  "num_obstacles": 120,
+  "inner_domain": {
+    "xmin": 0.0,
+    "ymin": 0.0,
+    "xmax": 50.0,
+    "ymax": 50.0,
+    "width": 50.0,
+    "height": 50.0
+  },
+  "outer_domain": {
+    "xmin": -0.5,
+    "ymin": -0.5,
+    "xmax": 50.5,
+    "ymax": 50.5,
+    "width": 51.0,
+    "height": 51.0
+  },
+  "quadtree": {
+    "leaf_count": 37753,
+    "free_leaf_count": 13425,
+    "occupied_leaf_count": 24328,
+    "mixed_leaf_count": 0,
+    "min_resolution": 0.05,
+    "max_depth": 20
+  }
+}

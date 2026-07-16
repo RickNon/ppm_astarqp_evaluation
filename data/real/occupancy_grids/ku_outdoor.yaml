@@ -1,0 +1,8 @@
+image: ku_outdoor.pgm
+mode: trinary
+resolution: 0.05
+origin: [-39.6, -65.3, 0]
+negate: 0
+occupied_thresh: 0.65
+# Cartographer-style gray cells (~205) should remain unknown, not free.
+free_thresh: 0.15

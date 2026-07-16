@@ -1,0 +1,18 @@
+[project]
+name = "ppm_builder"
+version = "0.1.0"
+description = "Polygonal Proximity Map (PPM) builder: 2D/3D halfspace construction and optional exact polytope extraction."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "numpy>=1.23",
+  "scipy>=1.10",
+]
+
+[project.optional-dependencies]
+geo = [
+  "shapely>=2.0",
+]
+
+[tool.ruff]
+line-length = 100

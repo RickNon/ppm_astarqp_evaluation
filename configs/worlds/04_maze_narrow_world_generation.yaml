@@ -1,0 +1,25 @@
+world:
+  name: 04_maze_narrow
+  width: 30
+  height: 30
+  wall_height: 2.0
+  wall_thickness: 0.5
+  ground_thickness: 0.5
+
+maze:
+  cols: 15
+  rows: 15
+  corridor_width: 1.5
+  fit_mode: adjust_corridor_width
+  seed: 924
+
+output:
+  output_dir: results/exp1_map/world_generation/04_maze_narrow
+  world_file: 04_maze_narrow.world
+
+visualization:
+  output_dir: results/exp1_map/world_generation/04_maze_narrow
+  preview_image: 04_maze_narrow_preview.png
+  dpi: 180
+  wall_alpha: 0.85
+  figure_size: 7.5

@@ -1,0 +1,15 @@
+planner_server:
+  ros__parameters:
+    expected_planner_frequency: 0.0
+    planner_plugins: ["Theta"]
+
+    Theta:
+      plugin: "nav2_theta_star_planner/ThetaStarPlanner"
+
+      how_many_corners: 8
+      w_euc_cost: 1.0
+      w_traversal_cost: 2.0
+      allow_unknown: false
+      use_final_approach_orientation: false
+
+

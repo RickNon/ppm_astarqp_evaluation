@@ -1,0 +1,2251 @@
+<?xml version="1.0" ?>
+<sdf version="1.7">
+  <world name="04_maze_narrow">
+    <gravity>0 0 -9.8</gravity>
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <model name="ground_plane_custom">
+      <static>true</static>
+      <pose>15.000000 15.000000 -0.250000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>30.000000 30.000000 0.500000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>30.000000 30.000000 0.500000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+
+    <model name="outer_wall_bottom">
+      <static>true</static>
+      <pose>15.000000 -0.250000 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>31.000000 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>31.000000 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="outer_wall_top">
+      <static>true</static>
+      <pose>15.000000 30.250000 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>31.000000 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>31.000000 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="outer_wall_left">
+      <static>true</static>
+      <pose>-0.250000 15.000000 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.500000 30.000000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.500000 30.000000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="outer_wall_right">
+      <static>true</static>
+      <pose>30.250000 15.000000 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.500000 30.000000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.500000 30.000000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_0">
+      <static>true</static>
+      <pose>5.850000 3.050000 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.500000 6.100000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.500000 6.100000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_1">
+      <static>true</static>
+      <pose>9.916667 1.016667 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.500000 2.033333 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.500000 2.033333 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_2">
+      <static>true</static>
+      <pose>11.950000 2.033333 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.500000 4.066667 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.500000 4.066667 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_3">
+      <static>true</static>
+      <pose>26.183333 1.016667 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.500000 2.033333 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.500000 2.033333 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_4">
+      <static>true</static>
+      <pose>2.033333 1.783333 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>4.066667 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>4.066667 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_5">
+      <static>true</static>
+      <pose>7.883333 2.800000 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.500000 2.533333 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.500000 2.533333 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_6">
+      <static>true</static>
+      <pose>17.033333 1.783333 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>6.600000 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>6.600000 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_7">
+      <static>true</static>
+      <pose>23.133333 1.783333 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>2.533333 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>2.533333 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_8">
+      <static>true</static>
+      <pose>28.216667 2.800000 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.500000 2.533333 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.500000 2.533333 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_9">
+      <static>true</static>
+      <pose>3.816667 7.116667 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.500000 10.166667 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.500000 10.166667 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_10">
+      <static>true</static>
+      <pose>18.050000 5.083333 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.500000 6.100000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.500000 6.100000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_11">
+      <static>true</static>
+      <pose>22.116667 3.050000 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.500000 2.033333 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.500000 2.033333 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_12">
+      <static>true</static>
+      <pose>1.783333 5.850000 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.500000 4.566667 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.500000 4.566667 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_13">
+      <static>true</static>
+      <pose>9.916667 3.816667 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>3.566667 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>3.566667 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_14">
+      <static>true</static>
+      <pose>14.233333 3.816667 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>4.066667 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>4.066667 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_15">
+      <static>true</static>
+      <pose>20.850000 3.816667 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>2.033333 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>2.033333 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_16">
+      <static>true</static>
+      <pose>25.166667 3.816667 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>5.600000 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>5.600000 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_17">
+      <static>true</static>
+      <pose>29.233333 3.816667 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1.533333 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.533333 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_18">
+      <static>true</static>
+      <pose>13.983333 5.083333 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.500000 2.033333 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.500000 2.033333 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_19">
+      <static>true</static>
+      <pose>16.016667 6.100000 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.500000 4.066667 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.500000 4.066667 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_20">
+      <static>true</static>
+      <pose>8.133333 5.850000 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>4.066667 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>4.066667 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_21">
+      <static>true</static>
+      <pose>11.950000 6.866667 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.500000 2.533333 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.500000 2.533333 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_22">
+      <static>true</static>
+      <pose>23.383333 5.850000 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>10.166667 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>10.166667 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_23">
+      <static>true</static>
+      <pose>7.883333 9.150000 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.500000 6.100000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.500000 6.100000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_24">
+      <static>true</static>
+      <pose>28.216667 7.116667 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.500000 2.033333 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.500000 2.033333 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_25">
+      <static>true</static>
+      <pose>0.766667 7.883333 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1.533333 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.533333 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_26">
+      <static>true</static>
+      <pose>5.083333 7.883333 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>2.033333 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>2.033333 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_27">
+      <static>true</static>
+      <pose>10.683333 7.883333 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>2.033333 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>2.033333 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_28">
+      <static>true</static>
+      <pose>13.983333 7.883333 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>3.566667 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>3.566667 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_29">
+      <static>true</static>
+      <pose>23.900000 7.883333 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>8.133333 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>8.133333 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_30">
+      <static>true</static>
+      <pose>20.083333 9.150000 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.500000 2.033333 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.500000 2.033333 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_31">
+      <static>true</static>
+      <pose>24.150000 13.216667 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.500000 10.166667 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.500000 10.166667 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_32">
+      <static>true</static>
+      <pose>2.550000 9.916667 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>2.033333 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>2.033333 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_33">
+      <static>true</static>
+      <pose>6.616667 9.916667 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>2.033333 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>2.033333 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_34">
+      <static>true</static>
+      <pose>10.166667 9.916667 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>4.066667 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>4.066667 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_35">
+      <static>true</static>
+      <pose>16.783333 9.916667 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>6.100000 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>6.100000 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_36">
+      <static>true</static>
+      <pose>22.116667 11.950000 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.500000 4.566667 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.500000 4.566667 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_37">
+      <static>true</static>
+      <pose>27.200000 9.916667 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>2.533333 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>2.533333 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_38">
+      <static>true</static>
+      <pose>11.950000 13.216667 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.500000 6.100000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.500000 6.100000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_39">
+      <static>true</static>
+      <pose>13.983333 11.183333 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.500000 2.033333 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.500000 2.033333 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_40">
+      <static>true</static>
+      <pose>28.216667 12.200000 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.500000 4.066667 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.500000 4.066667 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_41">
+      <static>true</static>
+      <pose>1.016667 11.950000 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>2.033333 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>2.033333 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_42">
+      <static>true</static>
+      <pose>5.083333 11.950000 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>2.033333 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>2.033333 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_43">
+      <static>true</static>
+      <pose>9.916667 15.000000 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.500000 6.600000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.500000 6.600000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_44">
+      <static>true</static>
+      <pose>12.966667 11.950000 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1.533333 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.533333 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_45">
+      <static>true</static>
+      <pose>18.816667 11.950000 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>6.100000 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>6.100000 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_46">
+      <static>true</static>
+      <pose>25.416667 11.950000 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>2.033333 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>2.033333 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_47">
+      <static>true</static>
+      <pose>5.850000 16.266667 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.500000 8.133333 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.500000 8.133333 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_48">
+      <static>true</static>
+      <pose>16.016667 15.250000 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.500000 6.100000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.500000 6.100000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_49">
+      <static>true</static>
+      <pose>2.800000 13.983333 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>2.533333 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>2.533333 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_50">
+      <static>true</static>
+      <pose>7.883333 13.983333 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>3.566667 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>3.566667 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_51">
+      <static>true</static>
+      <pose>14.750000 13.983333 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>2.033333 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>2.033333 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_52">
+      <static>true</static>
+      <pose>18.050000 15.000000 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.500000 2.533333 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.500000 2.533333 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_53">
+      <static>true</static>
+      <pose>20.850000 13.983333 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>2.033333 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>2.033333 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_54">
+      <static>true</static>
+      <pose>26.950000 13.983333 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>2.033333 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>2.033333 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_55">
+      <static>true</static>
+      <pose>29.233333 13.983333 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1.533333 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.533333 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_56">
+      <static>true</static>
+      <pose>1.783333 20.333333 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.500000 12.200000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.500000 12.200000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_57">
+      <static>true</static>
+      <pose>13.983333 16.266667 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.500000 4.066667 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.500000 4.066667 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_58">
+      <static>true</static>
+      <pose>26.183333 15.250000 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.500000 2.033333 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.500000 2.033333 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_59">
+      <static>true</static>
+      <pose>4.583333 16.016667 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>2.033333 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>2.033333 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_60">
+      <static>true</static>
+      <pose>7.883333 19.066667 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.500000 6.600000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.500000 6.600000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_61">
+      <static>true</static>
+      <pose>21.100000 16.016667 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>5.600000 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>5.600000 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_62">
+      <static>true</static>
+      <pose>28.216667 20.083333 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.500000 8.633333 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.500000 8.633333 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_63">
+      <static>true</static>
+      <pose>3.816667 17.283333 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.500000 2.033333 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.500000 2.033333 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_64">
+      <static>true</static>
+      <pose>22.116667 18.300000 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.500000 4.066667 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.500000 4.066667 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_65">
+      <static>true</static>
+      <pose>11.950000 18.050000 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>3.566667 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>3.566667 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_66">
+      <static>true</static>
+      <pose>18.300000 18.050000 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>4.066667 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>4.066667 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_67">
+      <static>true</static>
+      <pose>26.950000 18.050000 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>2.033333 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>2.033333 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_68">
+      <static>true</static>
+      <pose>18.050000 21.350000 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.500000 6.100000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.500000 6.100000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_69">
+      <static>true</static>
+      <pose>4.583333 20.083333 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>2.033333 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>2.033333 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_70">
+      <static>true</static>
+      <pose>12.200000 20.083333 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>8.133333 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>8.133333 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_71">
+      <static>true</static>
+      <pose>20.850000 20.083333 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>2.033333 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>2.033333 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_72">
+      <static>true</static>
+      <pose>25.166667 20.083333 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>5.600000 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>5.600000 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_73">
+      <static>true</static>
+      <pose>3.816667 23.383333 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.500000 6.100000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.500000 6.100000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_74">
+      <static>true</static>
+      <pose>9.916667 24.400000 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.500000 8.133333 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.500000 8.133333 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_75">
+      <static>true</static>
+      <pose>20.083333 21.350000 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.500000 2.033333 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.500000 2.033333 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_76">
+      <static>true</static>
+      <pose>6.616667 22.116667 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>2.033333 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>2.033333 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_77">
+      <static>true</static>
+      <pose>13.983333 22.116667 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>4.566667 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>4.566667 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_78">
+      <static>true</static>
+      <pose>24.150000 22.116667 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>4.566667 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>4.566667 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_79">
+      <static>true</static>
+      <pose>5.850000 23.383333 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.500000 2.033333 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.500000 2.033333 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_80">
+      <static>true</static>
+      <pose>16.016667 23.383333 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.500000 2.033333 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.500000 2.033333 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_81">
+      <static>true</static>
+      <pose>22.116667 23.383333 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.500000 2.033333 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.500000 2.033333 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_82">
+      <static>true</static>
+      <pose>7.883333 25.166667 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.500000 2.533333 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.500000 2.533333 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_83">
+      <static>true</static>
+      <pose>12.200000 24.150000 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>4.066667 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>4.066667 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_84">
+      <static>true</static>
+      <pose>17.033333 24.150000 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1.533333 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.533333 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_85">
+      <static>true</static>
+      <pose>20.083333 24.150000 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>3.566667 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>3.566667 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_86">
+      <static>true</static>
+      <pose>25.933333 24.150000 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>4.066667 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>4.066667 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_87">
+      <static>true</static>
+      <pose>13.983333 25.416667 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.500000 2.033333 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.500000 2.033333 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_88">
+      <static>true</static>
+      <pose>20.083333 25.416667 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.500000 2.033333 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.500000 2.033333 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_89">
+      <static>true</static>
+      <pose>24.150000 25.416667 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.500000 2.033333 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.500000 2.033333 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_90">
+      <static>true</static>
+      <pose>2.800000 26.183333 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1.533333 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.533333 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_91">
+      <static>true</static>
+      <pose>5.850000 26.183333 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>3.566667 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>3.566667 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_92">
+      <static>true</static>
+      <pose>12.716667 26.183333 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>2.033333 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>2.033333 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_93">
+      <static>true</static>
+      <pose>15.250000 26.183333 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>2.033333 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>2.033333 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_94">
+      <static>true</static>
+      <pose>18.816667 26.183333 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>2.033333 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>2.033333 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_95">
+      <static>true</static>
+      <pose>22.883333 26.183333 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>2.033333 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>2.033333 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_96">
+      <static>true</static>
+      <pose>25.416667 26.183333 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>2.033333 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>2.033333 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_97">
+      <static>true</static>
+      <pose>28.216667 27.200000 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.500000 2.533333 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.500000 2.533333 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_98">
+      <static>true</static>
+      <pose>16.016667 28.216667 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.500000 3.566667 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.500000 3.566667 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_99">
+      <static>true</static>
+      <pose>18.050000 27.450000 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.500000 2.033333 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.500000 2.033333 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_100">
+      <static>true</static>
+      <pose>22.116667 27.450000 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.500000 2.033333 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.500000 2.033333 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_101">
+      <static>true</static>
+      <pose>26.183333 27.450000 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.500000 2.033333 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.500000 2.033333 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_102">
+      <static>true</static>
+      <pose>5.600000 28.216667 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>8.133333 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>8.133333 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_103">
+      <static>true</static>
+      <pose>12.200000 28.216667 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>4.066667 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>4.066667 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_104">
+      <static>true</static>
+      <pose>20.850000 28.216667 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>2.033333 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>2.033333 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_105">
+      <static>true</static>
+      <pose>24.150000 28.983333 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.500000 2.033333 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.500000 2.033333 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="maze_wall_106">
+      <static>true</static>
+      <pose>27.200000 28.216667 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1.533333 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.533333 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+  </world>
+</sdf>

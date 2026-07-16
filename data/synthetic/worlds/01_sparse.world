@@ -1,0 +1,2564 @@
+<?xml version="1.0" ?>
+<sdf version="1.7">
+  <world name="01_sparse">
+    <gravity>0 0 -9.8</gravity>
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <model name="ground_plane_custom">
+      <static>true</static>
+      <pose>25.000000 25.000000 -0.250000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>50.000000 50.000000 0.500000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>50.000000 50.000000 0.500000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+
+    <model name="outer_wall_bottom">
+      <static>true</static>
+      <pose>25.000000 -0.250000 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>51.000000 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>51.000000 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="outer_wall_top">
+      <static>true</static>
+      <pose>25.000000 50.250000 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>51.000000 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>51.000000 0.500000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="outer_wall_left">
+      <static>true</static>
+      <pose>-0.250000 25.000000 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.500000 50.000000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.500000 50.000000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="outer_wall_right">
+      <static>true</static>
+      <pose>50.250000 25.000000 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.500000 50.000000 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.500000 50.000000 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+
+    <model name="obstacle_0000">
+      <static>true</static>
+      <pose>0.695004 3.118231 1.000000 0 0 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.973815 0.859350 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.973815 0.859350 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0001">
+      <static>true</static>
+      <pose>0.967370 0.865894 1.000000 0 0 1.570796</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1.232415 1.233601 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.232415 1.233601 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0002">
+      <static>true</static>
+      <pose>1.453639 5.475115 1.000000 0 0 1.570796</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.838642 1.276874 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.838642 1.276874 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0003">
+      <static>true</static>
+      <pose>9.568257 4.710781 1.000000 0 0 1.570796</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>3.980438 0.613456 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>3.980438 0.613456 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0004">
+      <static>true</static>
+      <pose>17.386270 48.986134 1.000000 0 0 1.570796</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>2.027733 1.406575 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>2.027733 1.406575 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0005">
+      <static>true</static>
+      <pose>4.604910 1.313257 1.000000 0 0 1.570796</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.781066 0.968072 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.781066 0.968072 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0006">
+      <static>true</static>
+      <pose>10.434392 6.153786 1.000000 0 0 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1.417977 1.537242 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.417977 1.537242 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0007">
+      <static>true</static>
+      <pose>2.624320 3.797344 1.000000 0 0 1.570796</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.756318 1.016406 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.756318 1.016406 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0008">
+      <static>true</static>
+      <pose>2.915276 2.166675 1.000000 0 0 1.570796</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1.693183 2.049549 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.693183 2.049549 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0009">
+      <static>true</static>
+      <pose>11.501794 4.571215 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.522550</radius>
+              <length>2.000000</length>
+            </cylinder>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.522550</radius>
+              <length>2.000000</length>
+            </cylinder>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0010">
+      <static>true</static>
+      <pose>7.431690 5.729944 1.000000 0 0 0.785398</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>3.777457 0.501467 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>3.777457 0.501467 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0011">
+      <static>true</static>
+      <pose>18.951150 48.066115 1.000000 0 0 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>4.148786 0.459837 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>4.148786 0.459837 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0012">
+      <static>true</static>
+      <pose>0.858085 7.583045 1.000000 0 0 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1.160673 0.759524 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.160673 0.759524 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0013">
+      <static>true</static>
+      <pose>6.826381 2.863446 1.000000 0 0 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1.664469 1.877489 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.664469 1.877489 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0014">
+      <static>true</static>
+      <pose>16.903474 47.277748 1.000000 0 0 1.570796</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>2.270105 1.446573 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>2.270105 1.446573 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0015">
+      <static>true</static>
+      <pose>18.355694 45.525282 1.000000 0 0 1.570796</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>2.057959 1.810767 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>2.057959 1.810767 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0016">
+      <static>true</static>
+      <pose>11.797795 8.230290 1.000000 0 0 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1.982779 1.002163 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.982779 1.002163 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0017">
+      <static>true</static>
+      <pose>4.490485 3.681467 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.513272</radius>
+              <length>2.000000</length>
+            </cylinder>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.513272</radius>
+              <length>2.000000</length>
+            </cylinder>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0018">
+      <static>true</static>
+      <pose>5.642066 5.786353 1.000000 0 0 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>2.666586 2.187683 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>2.666586 2.187683 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0019">
+      <static>true</static>
+      <pose>8.968400 7.216317 1.000000 0 0 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.886585 1.111045 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.886585 1.111045 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0020">
+      <static>true</static>
+      <pose>3.919306 6.030207 1.000000 0 0 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.933257 1.141949 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.933257 1.141949 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0021">
+      <static>true</static>
+      <pose>6.242986 7.711129 1.000000 0 0 1.570796</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>4.687507 0.567327 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>4.687507 0.567327 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0022">
+      <static>true</static>
+      <pose>10.759781 9.615030 1.000000 0 0 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.618906 0.808397 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.618906 0.808397 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0023">
+      <static>true</static>
+      <pose>20.103382 43.601348 1.000000 0 0 1.570796</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1.137461 0.941154 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.137461 0.941154 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0024">
+      <static>true</static>
+      <pose>26.149616 0.833209 1.000000 0 0 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1.083453 0.944038 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.083453 0.944038 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0025">
+      <static>true</static>
+      <pose>2.827723 8.137635 1.000000 0 0 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>2.189633 2.068551 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>2.189633 2.068551 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0026">
+      <static>true</static>
+      <pose>2.418969 10.610893 1.000000 0 0 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>4.837938 0.625704 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>4.837938 0.625704 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0027">
+      <static>true</static>
+      <pose>9.682625 2.440319 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.623030</radius>
+              <length>2.000000</length>
+            </cylinder>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.623030</radius>
+              <length>2.000000</length>
+            </cylinder>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0028">
+      <static>true</static>
+      <pose>12.720975 6.202122 1.000000 0 0 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>2.853137 0.559761 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>2.853137 0.559761 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0029">
+      <static>true</static>
+      <pose>22.449243 41.884827 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.657754</radius>
+              <length>2.000000</length>
+            </cylinder>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.657754</radius>
+              <length>2.000000</length>
+            </cylinder>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0030">
+      <static>true</static>
+      <pose>7.335277 1.013936 1.000000 0 0 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1.494800 1.728177 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.494800 1.728177 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0031">
+      <static>true</static>
+      <pose>6.843772 11.026727 1.000000 0 0 2.356194</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>3.959374 0.462468 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>3.959374 0.462468 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0032">
+      <static>true</static>
+      <pose>7.804776 8.504881 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.684296</radius>
+              <length>2.000000</length>
+            </cylinder>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.684296</radius>
+              <length>2.000000</length>
+            </cylinder>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0033">
+      <static>true</static>
+      <pose>11.902514 1.683297 1.000000 0 0 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.626175 0.658737 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.626175 0.658737 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0034">
+      <static>true</static>
+      <pose>22.157335 40.251069 1.000000 0 0 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1.724378 1.619299 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.724378 1.619299 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0035">
+      <static>true</static>
+      <pose>16.146209 24.184760 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.527531</radius>
+              <length>2.000000</length>
+            </cylinder>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.527531</radius>
+              <length>2.000000</length>
+            </cylinder>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0036">
+      <static>true</static>
+      <pose>20.133096 45.679445 1.000000 0 0 1.570796</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.694280 1.064228 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.694280 1.064228 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0037">
+      <static>true</static>
+      <pose>17.495579 42.251864 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.629149</radius>
+              <length>2.000000</length>
+            </cylinder>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.629149</radius>
+              <length>2.000000</length>
+            </cylinder>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0038">
+      <static>true</static>
+      <pose>13.242705 3.863169 1.000000 0 0 0.785398</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>4.156962 0.610762 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>4.156962 0.610762 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0039">
+      <static>true</static>
+      <pose>13.154783 9.663601 1.000000 0 0 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>4.020465 0.601088 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>4.020465 0.601088 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0040">
+      <static>true</static>
+      <pose>27.036963 2.467667 1.000000 0 0 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>3.162600 0.591078 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>3.162600 0.591078 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0041">
+      <static>true</static>
+      <pose>18.321892 4.285388 1.000000 0 0 1.570796</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1.542360 1.423658 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.542360 1.423658 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0042">
+      <static>true</static>
+      <pose>16.361484 21.816547 1.000000 0 0 0.785398</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>2.806266 0.389773 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>2.806266 0.389773 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0043">
+      <static>true</static>
+      <pose>15.367563 4.522179 1.000000 0 0 1.570796</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.813759 1.240119 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.813759 1.240119 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0044">
+      <static>true</static>
+      <pose>11.053657 11.301368 1.000000 0 0 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1.068712 0.767121 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.068712 0.767121 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0045">
+      <static>true</static>
+      <pose>11.964090 26.340969 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.744905</radius>
+              <length>2.000000</length>
+            </cylinder>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.744905</radius>
+              <length>2.000000</length>
+            </cylinder>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0046">
+      <static>true</static>
+      <pose>14.137918 28.708960 1.000000 0 0 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>2.461549 1.665139 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>2.461549 1.665139 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0047">
+      <static>true</static>
+      <pose>5.280621 10.257216 1.000000 0 0 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1.736876 1.937639 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.736876 1.937639 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0048">
+      <static>true</static>
+      <pose>3.338259 11.716652 1.000000 0 0 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1.372295 0.621325 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.372295 0.621325 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0049">
+      <static>true</static>
+      <pose>15.058719 47.589104 1.000000 0 0 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.972650 0.745498 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.972650 0.745498 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0050">
+      <static>true</static>
+      <pose>5.557577 12.327217 1.000000 0 0 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1.366274 1.255419 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.366274 1.255419 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0051">
+      <static>true</static>
+      <pose>7.540595 12.484419 1.000000 0 0 1.570796</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1.282651 0.717477 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.282651 0.717477 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0052">
+      <static>true</static>
+      <pose>9.455897 11.452715 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.708917</radius>
+              <length>2.000000</length>
+            </cylinder>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.708917</radius>
+              <length>2.000000</length>
+            </cylinder>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0053">
+      <static>true</static>
+      <pose>23.496222 1.429400 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.839813</radius>
+              <length>2.000000</length>
+            </cylinder>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.839813</radius>
+              <length>2.000000</length>
+            </cylinder>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0054">
+      <static>true</static>
+      <pose>14.561469 31.051536 1.000000 0 0 1.570796</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1.191409 0.655741 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.191409 0.655741 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0055">
+      <static>true</static>
+      <pose>17.285315 26.620817 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.430735</radius>
+              <length>2.000000</length>
+            </cylinder>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.430735</radius>
+              <length>2.000000</length>
+            </cylinder>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0056">
+      <static>true</static>
+      <pose>48.952449 17.851241 1.000000 0 0 1.570796</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>2.046637 1.692496 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>2.046637 1.692496 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0057">
+      <static>true</static>
+      <pose>17.108356 31.658790 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.802575</radius>
+              <length>2.000000</length>
+            </cylinder>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.802575</radius>
+              <length>2.000000</length>
+            </cylinder>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0058">
+      <static>true</static>
+      <pose>18.191600 22.501385 1.000000 0 0 1.570796</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.884977 1.142067 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.884977 1.142067 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0059">
+      <static>true</static>
+      <pose>20.695165 47.929834 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.722221</radius>
+              <length>2.000000</length>
+            </cylinder>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.722221</radius>
+              <length>2.000000</length>
+            </cylinder>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0060">
+      <static>true</static>
+      <pose>14.095047 8.278848 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.389186</radius>
+              <length>2.000000</length>
+            </cylinder>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.389186</radius>
+              <length>2.000000</length>
+            </cylinder>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0061">
+      <static>true</static>
+      <pose>12.985390 30.765149 1.000000 0 0 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1.316308 1.215602 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.316308 1.215602 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0062">
+      <static>true</static>
+      <pose>15.636832 40.487611 1.000000 0 0 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.810147 0.891399 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.810147 0.891399 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0063">
+      <static>true</static>
+      <pose>17.775412 28.157682 1.000000 0 0 1.570796</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.825408 0.789477 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.825408 0.789477 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0064">
+      <static>true</static>
+      <pose>19.626424 29.543788 1.000000 0 0 0.785398</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>2.697046 0.499648 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>2.697046 0.499648 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0065">
+      <static>true</static>
+      <pose>19.927315 36.322674 1.000000 0 0 1.570796</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>2.292304 1.638937 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>2.292304 1.638937 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0066">
+      <static>true</static>
+      <pose>24.842789 2.496607 1.000000 0 0 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>2.204999 2.170998 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>2.204999 2.170998 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0067">
+      <static>true</static>
+      <pose>17.591422 37.538894 1.000000 0 0 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>2.641817 1.018327 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>2.641817 1.018327 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0068">
+      <static>true</static>
+      <pose>14.515086 0.946214 1.000000 0 0 1.570796</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1.055578 0.941291 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.055578 0.941291 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0069">
+      <static>true</static>
+      <pose>20.322169 38.228825 1.000000 0 0 1.570796</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.836213 1.075181 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.836213 1.075181 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0070">
+      <static>true</static>
+      <pose>12.834849 12.009384 1.000000 0 0 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1.221479 1.262328 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.221479 1.262328 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0071">
+      <static>true</static>
+      <pose>19.587175 21.024866 1.000000 0 0 0.785398</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>3.557763 0.398359 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>3.557763 0.398359 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0072">
+      <static>true</static>
+      <pose>21.855872 45.824689 1.000000 0 0 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.661084 0.682399 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.661084 0.682399 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0073">
+      <static>true</static>
+      <pose>14.819699 27.071995 1.000000 0 0 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1.393594 0.713560 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.393594 0.713560 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0074">
+      <static>true</static>
+      <pose>28.990387 2.066857 1.000000 0 0 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1.097656 1.117930 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.097656 1.117930 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0075">
+      <static>true</static>
+      <pose>16.722385 39.224659 1.000000 0 0 1.570796</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1.347066 1.283270 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.347066 1.283270 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0076">
+      <static>true</static>
+      <pose>6.324869 13.836407 1.000000 0 0 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>2.108112 1.527688 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>2.108112 1.527688 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0077">
+      <static>true</static>
+      <pose>16.426755 36.414651 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.450265</radius>
+              <length>2.000000</length>
+            </cylinder>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.450265</radius>
+              <length>2.000000</length>
+            </cylinder>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0078">
+      <static>true</static>
+      <pose>18.652876 38.999645 1.000000 0 0 1.570796</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1.423043 2.050792 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.423043 2.050792 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0079">
+      <static>true</static>
+      <pose>15.799918 33.116240 1.000000 0 0 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>2.712862 2.199324 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>2.712862 2.199324 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0080">
+      <static>true</static>
+      <pose>18.362474 35.358047 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.645710</radius>
+              <length>2.000000</length>
+            </cylinder>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.645710</radius>
+              <length>2.000000</length>
+            </cylinder>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0081">
+      <static>true</static>
+      <pose>18.747861 25.748924 1.000000 0 0 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.686759 0.831700 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.686759 0.831700 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0082">
+      <static>true</static>
+      <pose>14.301550 23.922290 1.000000 0 0 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1.639022 1.139326 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.639022 1.139326 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0083">
+      <static>true</static>
+      <pose>13.366155 25.486562 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.789834</radius>
+              <length>2.000000</length>
+            </cylinder>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.789834</radius>
+              <length>2.000000</length>
+            </cylinder>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0084">
+      <static>true</static>
+      <pose>15.190862 20.608603 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.611046</radius>
+              <length>2.000000</length>
+            </cylinder>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.611046</radius>
+              <length>2.000000</length>
+            </cylinder>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0085">
+      <static>true</static>
+      <pose>20.365043 24.051955 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.526628</radius>
+              <length>2.000000</length>
+            </cylinder>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.526628</radius>
+              <length>2.000000</length>
+            </cylinder>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0086">
+      <static>true</static>
+      <pose>17.942531 1.960135 1.000000 0 0 2.356194</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>3.405980 0.611265 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>3.405980 0.611265 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0087">
+      <static>true</static>
+      <pose>21.723823 22.018958 1.000000 0 0 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1.577627 1.612147 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.577627 1.612147 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0088">
+      <static>true</static>
+      <pose>19.828422 31.566228 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.517849</radius>
+              <length>2.000000</length>
+            </cylinder>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.517849</radius>
+              <length>2.000000</length>
+            </cylinder>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0089">
+      <static>true</static>
+      <pose>47.886482 16.311298 1.000000 0 0 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1.026685 0.732697 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.026685 0.732697 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0090">
+      <static>true</static>
+      <pose>19.330232 33.208984 1.000000 0 0 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.913466 0.921301 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.913466 0.921301 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0091">
+      <static>true</static>
+      <pose>16.247243 1.848269 1.000000 0 0 1.570796</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.746412 1.189327 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.746412 1.189327 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0092">
+      <static>true</static>
+      <pose>9.401305 25.437467 1.000000 0 0 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>2.600221 1.231804 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>2.600221 1.231804 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0093">
+      <static>true</static>
+      <pose>13.811025 22.385495 1.000000 0 0 1.570796</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>2.136090 1.117018 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>2.136090 1.117018 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0094">
+      <static>true</static>
+      <pose>17.895611 15.320624 1.000000 0 0 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1.261371 0.868303 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.261371 0.868303 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0095">
+      <static>true</static>
+      <pose>10.325522 28.468378 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.723827</radius>
+              <length>2.000000</length>
+            </cylinder>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.723827</radius>
+              <length>2.000000</length>
+            </cylinder>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0096">
+      <static>true</static>
+      <pose>21.156110 2.758707 1.000000 0 0 1.570796</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.979229 1.225069 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.979229 1.225069 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0097">
+      <static>true</static>
+      <pose>16.442162 13.787452 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.790886</radius>
+              <length>2.000000</length>
+            </cylinder>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.790886</radius>
+              <length>2.000000</length>
+            </cylinder>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0098">
+      <static>true</static>
+      <pose>14.776644 9.770125 1.000000 0 0 1.570796</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>2.396115 1.482022 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>2.396115 1.482022 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0099">
+      <static>true</static>
+      <pose>19.505730 1.751492 1.000000 0 0 1.570796</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>3.502985 0.686241 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>3.502985 0.686241 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0100">
+      <static>true</static>
+      <pose>18.025504 20.182095 1.000000 0 0 0.785398</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>4.743390 0.401466 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>4.743390 0.401466 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0101">
+      <static>true</static>
+      <pose>24.355564 4.039753 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.614380</radius>
+              <length>2.000000</length>
+            </cylinder>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.614380</radius>
+              <length>2.000000</length>
+            </cylinder>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0102">
+      <static>true</static>
+      <pose>14.935089 45.269719 1.000000 0 0 1.570796</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1.682003 1.192944 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.682003 1.192944 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0103">
+      <static>true</static>
+      <pose>4.761551 14.482887 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.714098</radius>
+              <length>2.000000</length>
+            </cylinder>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.714098</radius>
+              <length>2.000000</length>
+            </cylinder>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0104">
+      <static>true</static>
+      <pose>20.445325 5.835400 1.000000 0 0 1.570796</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.619209 1.062261 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.619209 1.062261 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0105">
+      <static>true</static>
+      <pose>14.487238 12.622085 1.000000 0 0 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.974160 0.800514 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.974160 0.800514 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0106">
+      <static>true</static>
+      <pose>16.546882 19.563827 1.000000 0 0 1.570796</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1.633679 1.932459 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.633679 1.932459 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0107">
+      <static>true</static>
+      <pose>8.298344 14.391092 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.540348</radius>
+              <length>2.000000</length>
+            </cylinder>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.540348</radius>
+              <length>2.000000</length>
+            </cylinder>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0108">
+      <static>true</static>
+      <pose>14.638909 42.678746 1.000000 0 0 1.570796</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>2.462319 0.697867 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>2.462319 0.697867 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0109">
+      <static>true</static>
+      <pose>0.771679 14.757624 1.000000 0 0 1.570796</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.674803 1.184599 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.674803 1.184599 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0110">
+      <static>true</static>
+      <pose>43.822446 15.367092 1.000000 0 0 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>2.747362 1.173539 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>2.747362 1.173539 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0111">
+      <static>true</static>
+      <pose>24.917045 41.128159 1.000000 0 0 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>2.861614 0.579993 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>2.861614 0.579993 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0112">
+      <static>true</static>
+      <pose>13.601323 14.116257 1.000000 0 0 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1.020376 0.931524 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.020376 0.931524 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0113">
+      <static>true</static>
+      <pose>20.311060 27.957929 1.000000 0 0 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.843935 0.774054 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.843935 0.774054 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0114">
+      <static>true</static>
+      <pose>24.106503 37.778446 1.000000 0 0 0.785398</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>3.875231 0.403955 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>3.875231 0.403955 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0115">
+      <static>true</static>
+      <pose>2.438560 13.166374 1.000000 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.649425</radius>
+              <length>2.000000</length>
+            </cylinder>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.649425</radius>
+              <length>2.000000</length>
+            </cylinder>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0116">
+      <static>true</static>
+      <pose>19.392237 7.083402 1.000000 0 0 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1.145550 0.798474 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.145550 0.798474 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0117">
+      <static>true</static>
+      <pose>17.509640 7.167269 1.000000 0 0 1.570796</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>3.930766 0.561844 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>3.930766 0.561844 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0118">
+      <static>true</static>
+      <pose>46.733482 19.719158 1.000000 0 0 1.570796</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.916302 0.623711 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.916302 0.623711 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_0119">
+      <static>true</static>
+      <pose>14.892420 18.623176 1.000000 0 0 0.000000</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1.130146 0.821535 2.000000</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.130146 0.821535 2.000000</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+  </world>
+</sdf>

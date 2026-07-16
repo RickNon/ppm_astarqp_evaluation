@@ -1,0 +1,25 @@
+world:
+  name: 03_maze_wide
+  width: 30
+  height: 30
+  wall_height: 2.0
+  wall_thickness: 0.5
+  ground_thickness: 0.5
+
+maze:
+  cols: 10
+  rows: 10
+  corridor_width: 2.55
+  fit_mode: adjust_corridor_width
+  seed: 42
+
+output:
+  output_dir: results/exp1_map/world_generation/03_maze_wide
+  world_file: 03_maze_wide.world
+
+visualization:
+  output_dir: results/exp1_map/world_generation/03_maze_wide
+  preview_image: 03_maze_wide_preview.png
+  dpi: 180
+  wall_alpha: 0.85
+  figure_size: 7.5

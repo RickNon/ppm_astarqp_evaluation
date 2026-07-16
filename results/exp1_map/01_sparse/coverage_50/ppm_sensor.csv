@@ -1,0 +1,4 @@
+count,time,location_odometry_pos_x,location_odometry_pos_y,location_odometry_pos_z,location_odometry_roll,location_odometry_pitch,location_odometry_yaw
+0,0,6.718212205620061,42.371686846861635,0,0,0,0.0
+1,500,38.1887309488307,12.753451286971085,0,0,0,0.0
+2,1000,32.579648636138145,39.43616755677566,0,0,0,0.0

@@ -1,0 +1,12 @@
+[project]
+name = "polygonal-proximity-map"
+version = "0.1.0"
+description = "description"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "ppm_builder",
+]
+
+[tool.uv.sources]
+ppm_builder = { path = "ppm_builder", editable = true }

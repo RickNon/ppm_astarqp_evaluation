@@ -1,6 +1,6 @@
 io:
-  ppm_sensor_csv: ../../../../results/exp1_map/02_dense/coverage_ratio_90/ppm_sensor.csv
-  ppm_prox_csv: ../../../../results/exp1_map/02_dense/coverage_ratio_90/ppm_prox.csv
+  ppm_sensor_csv: ../../../../results/exp1_map/02_dense/coverage_90/ppm_sensor.csv
+  ppm_prox_csv: ../../../../results/exp1_map/02_dense/coverage_90/ppm_prox.csv
   world_file: ../../../../data/synthetic/worlds/02_dense.world
   output_dir: ../../../../results/exp2_planner_sim/02_dense/coverage_90
 

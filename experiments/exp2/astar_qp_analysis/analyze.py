@@ -1,18 +1,18 @@
 from __future__ import annotations
 
 import argparse
-import hashlib
-import importlib.metadata
-import json
-import platform
 import sys
 from dataclasses import dataclass
-from datetime import datetime, timezone
 from pathlib import Path
-from typing import Iterable
 
+import matplotlib
+
+matplotlib.use("Agg")
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+from matplotlib import font_manager
+from matplotlib.patches import Patch
 
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
@@ -23,23 +23,60 @@ if str(PPM_PLANNING_DIR) not in sys.path:
 from modules.config_loader import load_config
 from modules.graph_manager import GraphManager
 from modules.planner import AstarQPBase, AstarQPWideSpace
-from plot_results import (
-    EPS_FONT_TYPE,
-    PLOT_FONT_SIZE,
-    PLOT_OUTPUT_FORMATS,
-    generate_mechanism_plots,
-)
 
 
 ENVIRONMENTS = ("01_sparse", "02_dense")
-COVERAGES = (80, 90)
-METHODS = ("astar_qp_base", "astar_qp_wide_space", "astar_qp_full")
+FOCUS_COVERAGES = (80, 90)
+METHODS = (
+    "astar_qp_base",
+    "astar_qp_wide_space",
+    "astar_qp_full",
+)
+ENVIRONMENT_LABELS = {
+    "01_sparse": "Sparse",
+    "02_dense": "Dense",
+}
+METHOD_LABELS = {
+    "astar_qp_base": "Base",
+    "astar_qp_wide_space": "Wide-space",
+    "astar_qp_full": "Full",
+}
+METHOD_COLORS = {
+    "astar_qp_base": "#4C78A8",
+    "astar_qp_wide_space": "#F2A541",
+    "astar_qp_full": "#59A14F",
+}
+METRIC_SPECS = (
+    {
+        "key": "effective_openness",
+        "ylabel": r"Effective openness [m$^2$]",
+        "output_name": "effective_openness_grouped_bars_coverage_80_90",
+        "series": (
+            ("astar_qp_base", "base_effective_openness_m2"),
+            ("astar_qp_wide_space", "wide_effective_openness_m2"),
+        ),
+    },
+    {
+        "key": "second_difference_energy",
+        "ylabel": r"Integrated second-difference energy [m$^{-1}$]",
+        "output_name": "second_difference_energy_grouped_bars_coverage_80_90",
+        "series": (
+            ("astar_qp_base", "base_second_difference_energy_1pm"),
+            ("astar_qp_wide_space", "wide_second_difference_energy_1pm"),
+            ("astar_qp_full", "full_second_difference_energy_1pm"),
+        ),
+    },
+)
+
 COMMON_SPACING_M = 0.10
 WIDE_SPACE_EPSILON = 1.0e-2
-RATIO_DENOMINATOR_EPS = 1.0e-12
-NUMERICAL_EQUAL_ATOL = 1.0e-12
-NUMERICAL_EQUAL_RTOL = 1.0e-9
+ZERO_ENERGY_EPSILON = 1.0e-12
 DEFAULT_OUTPUT_DIR = REPO_ROOT / "results" / "exp2_astar_qp_mechanism_effects"
+DEFAULT_OUTPUT_FORMATS = ("png", "eps")
+SUPPORTED_OUTPUT_FORMATS = frozenset(("png", "eps", "pdf", "svg"))
+PLOT_FONT_SIZE = 14.0
+RASTER_DPI = 220
+EPS_FONT_TYPE = 3
 
 
 @dataclass(frozen=True)
@@ -51,28 +88,55 @@ class Condition:
 
 
 def parse_args() -> argparse.Namespace:
+    """Parse calculation and plot settings."""
     parser = argparse.ArgumentParser(
-        description="Generate only the B/C A*QP mechanism comparisons."
+        description=(
+            "Calculate absolute A*QP mechanism metrics and plot their medians "
+            "from the standard Experiment 2 planner results."
+        )
     )
     parser.add_argument(
         "--output-dir",
         type=Path,
         default=DEFAULT_OUTPUT_DIR,
-        help="Independent output directory for the B/C analysis.",
+        help="Directory that receives calculated CSVs and figures.",
     )
     parser.add_argument(
         "--spacing-m",
         type=float,
         default=COMMON_SPACING_M,
-        help="Common arc-length interval used for second-difference energy.",
+        help="Arc-length interval for second-difference energy.",
+    )
+    parser.add_argument(
+        "--formats",
+        nargs="+",
+        default=list(DEFAULT_OUTPUT_FORMATS),
+        help="One or more output formats: png, eps, pdf, or svg.",
     )
     return parser.parse_args()
 
 
+def normalized_formats(raw_formats: list[str]) -> tuple[str, ...]:
+    """Validate and normalize requested figure formats."""
+    formats = tuple(value.lower().lstrip(".") for value in raw_formats)
+    if not formats:
+        raise ValueError("At least one output format is required.")
+    if len(formats) != len(set(formats)):
+        raise ValueError("Output formats must not contain duplicates.")
+    unsupported = sorted(set(formats) - SUPPORTED_OUTPUT_FORMATS)
+    if unsupported:
+        raise ValueError(
+            f"Unsupported output formats: {', '.join(unsupported)}. "
+            f"Choose from: {', '.join(sorted(SUPPORTED_OUTPUT_FORMATS))}."
+        )
+    return formats
+
+
 def build_conditions() -> list[Condition]:
+    """Resolve the four environment and coverage inputs."""
     conditions = []
     for environment in ENVIRONMENTS:
-        for coverage in COVERAGES:
+        for coverage in FOCUS_COVERAGES:
             conditions.append(
                 Condition(
                     environment=environment,
@@ -97,15 +161,8 @@ def build_conditions() -> list[Condition]:
     return conditions
 
 
-def sha256_file(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as stream:
-        for chunk in iter(lambda: stream.read(1024 * 1024), b""):
-            digest.update(chunk)
-    return digest.hexdigest()
-
-
 def read_existing_results(condition: Condition) -> dict[str, pd.DataFrame]:
+    """Load the original success records for all three methods."""
     return {
         method: pd.read_csv(condition.result_dir / method / "results.csv").set_index(
             "count"
@@ -115,6 +172,7 @@ def read_existing_results(condition: Condition) -> dict[str, pd.DataFrame]:
 
 
 def common_success_counts(existing: dict[str, pd.DataFrame]) -> list[int]:
+    """Return query IDs successfully solved by every method."""
     common: set[int] | None = None
     for method in METHODS:
         successes = set(
@@ -158,18 +216,24 @@ def load_result_path(
 
 
 def remove_duplicate_points(path_xy: np.ndarray) -> np.ndarray:
+    """Remove consecutive duplicate points before arc-length sampling."""
     path_xy = np.asarray(path_xy, dtype=float)
     if len(path_xy) == 0:
         return path_xy
     keep = np.ones(len(path_xy), dtype=bool)
-    keep[1:] = np.linalg.norm(path_xy[1:] - path_xy[:-1], axis=1) > 1.0e-12
+    keep[1:] = (
+        np.linalg.norm(path_xy[1:] - path_xy[:-1], axis=1) > 1.0e-12
+    )
     return path_xy[keep]
 
 
-def resample_without_short_endpoint(path_xy: np.ndarray, spacing: float) -> np.ndarray:
+def resample_without_short_endpoint(
+    path_xy: np.ndarray,
+    spacing: float,
+) -> np.ndarray:
     """Sample exact arc-length multiples and omit a shorter residual interval."""
     if spacing <= 0.0:
-        raise ValueError("spacing must be positive")
+        raise ValueError("spacing must be positive.")
     path_xy = remove_duplicate_points(path_xy)
     if len(path_xy) < 2:
         return path_xy
@@ -187,25 +251,35 @@ def integrated_second_difference_energy(
     path_xy: np.ndarray,
     spacing: float,
 ) -> float:
+    """Calculate the original common-scale second-difference energy."""
     sampled = resample_without_short_endpoint(path_xy, spacing)
     if len(sampled) < 3:
         return 0.0
     second_difference = np.diff(sampled, n=2, axis=0) / (spacing**2)
-    energy = float(np.sum(np.linalg.norm(second_difference, axis=1) ** 2) * spacing)
-    return 0.0 if abs(energy) <= RATIO_DENOMINATOR_EPS else energy
+    energy = float(
+        np.sum(np.linalg.norm(second_difference, axis=1) ** 2) * spacing
+    )
+    return 0.0 if abs(energy) <= ZERO_ENERGY_EPSILON else energy
 
 
 def make_route_planners(
     condition: Condition,
 ) -> tuple[GraphManager, AstarQPBase, AstarQPWideSpace]:
+    """Construct the planners needed to reproduce both graph routes."""
     config = load_config(condition.config_path)
     graph_manager = GraphManager()
     graph_manager.load_omnia_files(
         str(config.ppm_sensor_csv),
         str(config.ppm_prox_csv),
     )
-    base = AstarQPBase(graph_manager=graph_manager, qp_solver=config.qp_solver)
-    wide = AstarQPWideSpace(graph_manager=graph_manager, qp_solver=config.qp_solver)
+    base = AstarQPBase(
+        graph_manager=graph_manager,
+        qp_solver=config.qp_solver,
+    )
+    wide = AstarQPWideSpace(
+        graph_manager=graph_manager,
+        qp_solver=config.qp_solver,
+    )
     base.make_astar_graph()
     wide.make_astar_graph()
     wide._precompute_wide_space_normalizers()
@@ -219,6 +293,7 @@ def graph_routes_for_query(
     start: tuple[float, float],
     goal: tuple[float, float],
 ) -> tuple[list[int], list[int]]:
+    """Regenerate the base and wide-space graph routes."""
     start_node = graph_manager.get_nearest_initial_node(start)
     goal_node = graph_manager.get_nearest_initial_node(goal)
     if start_node is None or goal_node is None:
@@ -231,67 +306,60 @@ def graph_routes_for_query(
     base_route = base.astar_search(start_id, goal_id)
     wide_route = wide.wide_space_astar_search(start_id, goal_id)
     if base_route is None or wide_route is None:
-        raise RuntimeError("Graph route regeneration failed for a common-success query.")
-    return [int(value) for value in base_route], [
-        int(value) for value in wide_route
-    ]
+        raise RuntimeError("Graph route regeneration failed.")
+    return (
+        [int(value) for value in base_route],
+        [int(value) for value in wide_route],
+    )
 
 
-def effective_openness(planner: AstarQPWideSpace, route: list[int]) -> float:
-    """Compute the distance-weighted harmonic openness in square metres."""
+def effective_openness(
+    planner: AstarQPWideSpace,
+    route: list[int],
+) -> float:
+    """Calculate the original distance-weighted harmonic openness."""
     if len(route) < 2:
         return float("nan")
     distances = []
     regularized_openness = []
-    c_scale = float(planner._node_clearance_median)
-    l_scale = float(planner._shared_boundary_length_median)
+    clearance_scale = float(planner._node_clearance_median)
+    portal_scale = float(planner._shared_boundary_length_median)
     for source, target in zip(route[:-1], route[1:]):
         distance = float(planner.edge_cost_via_nearest(source, target))
         clearance = float(planner._node_clearance_mean(target))
         portal_width = float(planner._shared_boundary_length(source, target))
         distances.append(distance)
         regularized_openness.append(
-            clearance * portal_width + WIDE_SPACE_EPSILON * c_scale * l_scale
+            clearance * portal_width
+            + WIDE_SPACE_EPSILON * clearance_scale * portal_scale
         )
     distance_values = np.asarray(distances, dtype=float)
-    openness_values = np.maximum(np.asarray(regularized_openness, dtype=float), 1.0e-12)
-    return float(np.sum(distance_values) / np.sum(distance_values / openness_values))
-
-
-def stable_difference(candidate: float, baseline: float) -> float:
-    """Return zero when two values differ only by floating-point noise."""
-    if not np.isfinite(baseline) or not np.isfinite(candidate):
-        return float("nan")
-    difference = candidate - baseline
-    tolerance = NUMERICAL_EQUAL_ATOL + NUMERICAL_EQUAL_RTOL * max(
-        abs(candidate), abs(baseline)
+    openness_values = np.maximum(
+        np.asarray(regularized_openness, dtype=float),
+        1.0e-12,
     )
-    return 0.0 if abs(difference) <= tolerance else difference
+    return float(
+        np.sum(distance_values)
+        / np.sum(distance_values / openness_values)
+    )
 
 
-def relative_change(candidate: float, baseline: float) -> float:
-    if not np.isfinite(baseline) or not np.isfinite(candidate):
-        return float("nan")
-    if abs(baseline) <= RATIO_DENOMINATOR_EPS:
-        return float("nan")
-    return stable_difference(candidate, baseline) / baseline
-
-
-def collect_pairwise_metrics(
-    conditions: Iterable[Condition],
+def collect_absolute_metrics(
+    conditions: list[Condition],
     spacing: float,
 ) -> pd.DataFrame:
+    """Calculate openness and three-method energy for every common query."""
     rows = []
     for condition in conditions:
         print(
-            f"Processing {condition.environment} coverage_{condition.coverage}...",
+            f"Calculating {condition.environment} coverage_{condition.coverage}...",
             flush=True,
         )
         existing = read_existing_results(condition)
         counts = common_success_counts(existing)
-        pairs = pd.read_csv(condition.result_dir / "start_goal_pairs.csv").set_index(
-            "count"
-        )
+        pairs = pd.read_csv(
+            condition.result_dir / "start_goal_pairs.csv"
+        ).set_index("count")
         graph_manager, base_planner, wide_planner = make_route_planners(condition)
 
         for count in counts:
@@ -306,25 +374,17 @@ def collect_pairwise_metrics(
                 goal,
             )
 
-            smoothing_paths = {
-                method: load_result_path(
+            energies = {}
+            for method in METHODS:
+                path_xy = load_result_path(
                     condition,
                     method,
                     count,
                 )
-                for method in ("astar_qp_wide_space", "astar_qp_full")
-            }
-            wide_energy = integrated_second_difference_energy(
-                smoothing_paths["astar_qp_wide_space"],
-                spacing,
-            )
-            full_energy = integrated_second_difference_energy(
-                smoothing_paths["astar_qp_full"],
-                spacing,
-            )
-            base_openness = effective_openness(wide_planner, base_route)
-            wide_openness = effective_openness(wide_planner, wide_route)
-            is_straight_query = len(base_route) == 1 and len(wide_route) == 1
+                energies[method] = integrated_second_difference_energy(
+                    path_xy,
+                    spacing,
+                )
 
             rows.append(
                 {
@@ -335,322 +395,324 @@ def collect_pairwise_metrics(
                     "start_y_m": start[1],
                     "goal_x_m": goal[0],
                     "goal_y_m": goal[1],
-                    "is_straight_query": is_straight_query,
-                    "base_effective_openness_m2": base_openness,
-                    "wide_effective_openness_m2": wide_openness,
-                    "relative_effective_openness_change": relative_change(
-                        wide_openness,
-                        base_openness,
+                    "is_straight_query": (
+                        len(base_route) == 1 and len(wide_route) == 1
                     ),
-                    "wide_second_difference_energy_1pm": wide_energy,
-                    "full_second_difference_energy_1pm": full_energy,
-                    "relative_second_difference_energy_change": relative_change(
-                        full_energy,
-                        wide_energy,
+                    "base_effective_openness_m2": effective_openness(
+                        wide_planner,
+                        base_route,
                     ),
+                    "wide_effective_openness_m2": effective_openness(
+                        wide_planner,
+                        wide_route,
+                    ),
+                    "base_second_difference_energy_1pm": energies[
+                        "astar_qp_base"
+                    ],
+                    "wide_second_difference_energy_1pm": energies[
+                        "astar_qp_wide_space"
+                    ],
+                    "full_second_difference_energy_1pm": energies[
+                        "astar_qp_full"
+                    ],
                 }
             )
-    return pd.DataFrame(rows).sort_values(["environment", "coverage", "count"])
+    return pd.DataFrame(rows).sort_values(
+        ["environment", "coverage", "count"]
+    )
 
 
-def distribution_summary(series: pd.Series) -> dict[str, float]:
-    values = series.to_numpy(dtype=float)
-    values = values[np.isfinite(values)]
-    if values.size == 0:
-        return {
-            "n": 0,
-            "median": float("nan"),
-            "q1": float("nan"),
-            "q3": float("nan"),
-        }
-    return {
-        "n": int(values.size),
-        "median": float(np.median(values)),
-        "q1": float(np.quantile(values, 0.25)),
-        "q3": float(np.quantile(values, 0.75)),
-    }
-
-
-def build_base_wide_summary(details: pd.DataFrame) -> pd.DataFrame:
-    rows = []
-    for (environment, coverage), group in details.groupby(
-        ["environment", "coverage"],
-        sort=True,
-    ):
-        active = group.loc[~group["is_straight_query"]]
-        relative = distribution_summary(active["relative_effective_openness_change"])
-        rows.append(
-            {
-                "environment": environment,
-                "coverage": int(coverage),
-                "n_common_success": len(group),
-                "n_mechanism_active": len(active),
-                "n_straight_excluded": len(group) - len(active),
-                "n_openness_ratio_valid": relative["n"],
-                "relative_openness_change_median": relative["median"],
-                "relative_openness_change_q1": relative["q1"],
-                "relative_openness_change_q3": relative["q3"],
-                "relative_openness_change_median_pct": 100.0 * relative["median"],
-                "relative_openness_change_q1_pct": 100.0 * relative["q1"],
-                "relative_openness_change_q3_pct": 100.0 * relative["q3"],
-                "n_openness_increase": int(
-                    (active["relative_effective_openness_change"] > 0.0).sum()
-                ),
-                "n_openness_tie": int(
-                    (active["relative_effective_openness_change"] == 0.0).sum()
-                ),
-                "n_openness_decrease": int(
-                    (active["relative_effective_openness_change"] < 0.0).sum()
-                ),
-            }
-        )
-    return pd.DataFrame(rows)
-
-
-def build_wide_full_summary(details: pd.DataFrame) -> pd.DataFrame:
-    rows = []
-    for (environment, coverage), group in details.groupby(
-        ["environment", "coverage"],
-        sort=True,
-    ):
-        active = group.loc[~group["is_straight_query"]]
-        relative = distribution_summary(
-            active["relative_second_difference_energy_change"]
-        )
-        rows.append(
-            {
-                "environment": environment,
-                "coverage": int(coverage),
-                "n_common_success": len(group),
-                "n_mechanism_active": len(active),
-                "n_straight_excluded": len(group) - len(active),
-                "n_energy_ratio_valid": relative["n"],
-                "relative_energy_change_median": relative["median"],
-                "relative_energy_change_q1": relative["q1"],
-                "relative_energy_change_q3": relative["q3"],
-                "relative_energy_change_median_pct": 100.0 * relative["median"],
-                "relative_energy_change_q1_pct": 100.0 * relative["q1"],
-                "relative_energy_change_q3_pct": 100.0 * relative["q3"],
-                "n_energy_decrease": int(
-                    (active["relative_second_difference_energy_change"] < 0.0).sum()
-                ),
-                "n_energy_tie": int(
-                    (active["relative_second_difference_energy_change"] == 0.0).sum()
-                ),
-                "n_energy_increase": int(
-                    (active["relative_second_difference_energy_change"] > 0.0).sum()
-                ),
-            }
-        )
-    return pd.DataFrame(rows)
-
-
-def validate_outputs(
+def validate_calculated_metrics(
     details: pd.DataFrame,
-    base_wide: pd.DataFrame,
-    wide_full: pd.DataFrame,
-    conditions: Iterable[Condition],
+    conditions: list[Condition],
 ) -> None:
-    expected_counts = {}
-    for condition in conditions:
-        expected_counts[(condition.environment, condition.coverage)] = len(
+    """Validate the common-query population and calculated values."""
+    expected_counts = {
+        (condition.environment, condition.coverage): len(
             common_success_counts(read_existing_results(condition))
         )
+        for condition in conditions
+    }
     actual_counts = details.groupby(["environment", "coverage"]).size().to_dict()
     if actual_counts != expected_counts:
-        raise RuntimeError("The B/C analysis did not preserve the common-success set.")
-    if len(base_wide) != len(expected_counts) or len(wide_full) != len(
-        expected_counts
-    ):
-        raise RuntimeError("One or more B/C summary rows are missing.")
-    if not base_wide[["environment", "coverage"]].equals(
-        wide_full[["environment", "coverage"]]
-    ):
-        raise RuntimeError("The two B/C summaries are not aligned by condition.")
+        raise RuntimeError("Calculated rows do not preserve the common-success set.")
 
-    openness_direction_total = base_wide[
-        ["n_openness_increase", "n_openness_tie", "n_openness_decrease"]
-    ].sum(axis=1)
-    if not openness_direction_total.equals(base_wide["n_openness_ratio_valid"]):
-        raise RuntimeError("Effective-openness direction counts are incomplete.")
-    energy_direction_total = wide_full[
-        ["n_energy_decrease", "n_energy_tie", "n_energy_increase"]
-    ].sum(axis=1)
-    if not energy_direction_total.equals(wide_full["n_energy_ratio_valid"]):
-        raise RuntimeError("Energy direction counts are incomplete.")
-
-    straight = details["is_straight_query"].astype(bool)
-    openness_valid = details["relative_effective_openness_change"].notna()
-    if not openness_valid.equals(~straight):
-        raise RuntimeError("Effective openness must be defined for non-straight pairs.")
-    expected_openness = np.asarray(
-        [
-            relative_change(candidate, baseline)
-            for candidate, baseline in zip(
-                details.loc[openness_valid, "wide_effective_openness_m2"],
-                details.loc[openness_valid, "base_effective_openness_m2"],
-            )
-        ]
-    )
-    if not np.allclose(
-        details.loc[openness_valid, "relative_effective_openness_change"],
-        expected_openness,
-        rtol=1.0e-12,
-        atol=1.0e-12,
-    ):
-        raise RuntimeError("Effective-openness ratios failed formula validation.")
-
-    energy_valid = details["relative_second_difference_energy_change"].notna()
-    if not energy_valid.equals(~straight):
-        raise RuntimeError("Energy ratios must use the same non-straight pair set.")
-    expected_energy = np.asarray(
-        [
-            relative_change(candidate, baseline)
-            for candidate, baseline in zip(
-                details.loc[energy_valid, "full_second_difference_energy_1pm"],
-                details.loc[energy_valid, "wide_second_difference_energy_1pm"],
-            )
-        ]
-    )
-    if not np.allclose(
-        details.loc[energy_valid, "relative_second_difference_energy_change"],
-        expected_energy,
-        rtol=1.0e-12,
-        atol=1.0e-12,
-    ):
-        raise RuntimeError("Second-difference-energy ratios failed formula validation.")
-
-
-def write_manifest(
-    output_dir: Path,
-    conditions: Iterable[Condition],
-    spacing: float,
-) -> None:
-    input_paths = [
-        Path(__file__).resolve(),
-        Path(__file__).resolve().with_name("plot_results.py"),
-        Path(__file__).resolve().with_name("requirements.txt"),
-        PPM_PLANNING_DIR / "modules" / "config_loader.py",
-        PPM_PLANNING_DIR / "modules" / "data_converter.py",
-        PPM_PLANNING_DIR / "modules" / "planner.py",
-        PPM_PLANNING_DIR / "modules" / "graph_manager.py",
+    active = details.loc[~details["is_straight_query"]]
+    required_columns = [
+        "base_effective_openness_m2",
+        "wide_effective_openness_m2",
+        "base_second_difference_energy_1pm",
+        "wide_second_difference_energy_1pm",
+        "full_second_difference_energy_1pm",
     ]
-    for condition in conditions:
-        config = load_config(condition.config_path)
-        input_paths.extend(
-            [
-                condition.config_path,
-                condition.result_dir / "start_goal_pairs.csv",
-                config.ppm_sensor_csv,
-                config.ppm_prox_csv,
-                *[
-                    condition.result_dir / method / "results.csv"
-                    for method in METHODS
-                ],
-            ]
-        )
-        existing = read_existing_results(condition)
-        for count in common_success_counts(existing):
-            input_paths.extend(
-                condition.result_dir / method / "paths" / f"{count}_path.csv"
-                for method in ("astar_qp_wide_space", "astar_qp_full")
-            )
-    unique_inputs = sorted(set(path.resolve() for path in input_paths))
-    inputs = [
+    values = active[required_columns].to_numpy(dtype=float)
+    if not np.isfinite(values).all():
+        raise RuntimeError("A plotted metric contains a non-finite value.")
+    energy_columns = [
+        column for column in required_columns if column.endswith("_energy_1pm")
+    ]
+    if (active[energy_columns].to_numpy(dtype=float) < 0.0).any():
+        raise RuntimeError("Second-difference energy must be non-negative.")
+
+
+def build_summary(details: pd.DataFrame) -> pd.DataFrame:
+    """Build plotted medians in condition and method order."""
+    active = details.loc[~details["is_straight_query"]]
+    rows: list[dict[str, object]] = []
+    for metric_index, spec in enumerate(METRIC_SPECS):
+        for environment_index, environment in enumerate(ENVIRONMENTS):
+            for coverage_index, coverage in enumerate(FOCUS_COVERAGES):
+                condition = active.loc[
+                    (active["environment"] == environment)
+                    & (active["coverage"] == coverage)
+                ]
+                expected_n = len(condition)
+                group_index = (
+                    environment_index * len(FOCUS_COVERAGES) + coverage_index
+                )
+                for method, value_column in spec["series"]:
+                    values = condition[value_column].to_numpy(dtype=float)
+                    if values.size != expected_n or not np.isfinite(values).all():
+                        raise RuntimeError(
+                            f"Invalid values for {environment}, coverage "
+                            f"{coverage}, {value_column}."
+                        )
+                    rows.append(
+                        {
+                            "metric_index": metric_index,
+                            "metric": spec["key"],
+                            "group_index": group_index,
+                            "environment": environment,
+                            "environment_label": ENVIRONMENT_LABELS[environment],
+                            "coverage": coverage,
+                            "method": method,
+                            "method_label": METHOD_LABELS[method],
+                            "value_column": value_column,
+                            "n": int(values.size),
+                            "median": float(np.median(values)),
+                            "q1": float(np.quantile(values, 0.25)),
+                            "q3": float(np.quantile(values, 0.75)),
+                        }
+                    )
+    summary = pd.DataFrame(rows)
+    if len(summary) != 20:
+        raise RuntimeError("Expected eight openness and twelve energy bars.")
+    if not (
+        (summary["q1"] <= summary["median"])
+        & (summary["median"] <= summary["q3"])
+    ).all():
+        raise RuntimeError("Summary quartiles are not ordered.")
+    return summary
+
+
+def configure_plot_style() -> None:
+    """Apply the repository publication style."""
+    if PLOT_FONT_SIZE <= 0.0:
+        raise ValueError("Plot font size must be positive.")
+    font_manager.findfont("Times New Roman", fallback_to_default=False)
+    plt.rcParams.update(
         {
-            "path": str(path.relative_to(REPO_ROOT)).replace("\\", "/"),
-            "size_bytes": path.stat().st_size,
-            "sha256": sha256_file(path),
+            "font.family": "serif",
+            "font.serif": ["Times New Roman"],
+            "mathtext.fontset": "stix",
+            "font.size": PLOT_FONT_SIZE,
+            "axes.labelsize": PLOT_FONT_SIZE,
+            "xtick.labelsize": 0.90 * PLOT_FONT_SIZE,
+            "ytick.labelsize": 0.90 * PLOT_FONT_SIZE,
+            "legend.fontsize": 0.90 * PLOT_FONT_SIZE,
+            "pdf.fonttype": 42,
+            "ps.fonttype": EPS_FONT_TYPE,
         }
-        for path in unique_inputs
-    ]
-
-    output_files = []
-    for path in sorted(
-        candidate for candidate in output_dir.rglob("*") if candidate.is_file()
-    ):
-        if path.name == "run_manifest.json":
-            continue
-        output_files.append(
-            {
-                "path": path.relative_to(output_dir).as_posix(),
-                "size_bytes": path.stat().st_size,
-                "sha256": sha256_file(path),
-            }
-        )
-
-    package_versions = {}
-    for package in (
-        "cvxpy",
-        "matplotlib",
-        "networkx",
-        "numpy",
-        "osqp",
-        "pandas",
-        "PyYAML",
-        "scipy",
-    ):
-        try:
-            package_versions[package] = importlib.metadata.version(package)
-        except importlib.metadata.PackageNotFoundError:
-            package_versions[package] = None
-    manifest = {
-        "generated_at_utc": datetime.now(timezone.utc).isoformat(),
-        "python_version": platform.python_version(),
-        "package_versions": package_versions,
-        "coverages": list(COVERAGES),
-        "spacing_m": spacing,
-        "plot_style": {
-            "font_family": "Times New Roman",
-            "base_font_size_pt": PLOT_FONT_SIZE,
-            "output_formats": list(PLOT_OUTPUT_FORMATS),
-            "eps_font_type": EPS_FONT_TYPE,
-            "eps_text_representation": "embedded_type3_glyphs",
-        },
-        "ratio_denominator_epsilon": RATIO_DENOMINATOR_EPS,
-        "numerical_equality": {
-            "absolute_tolerance": NUMERICAL_EQUAL_ATOL,
-            "relative_tolerance": NUMERICAL_EQUAL_RTOL,
-        },
-        "relative_change_definitions": {
-            "effective_openness": "(wide - base) / base",
-            "second_difference_energy": "(full - wide) / wide",
-        },
-        "input_files": inputs,
-        "output_files": output_files,
-    }
-    (output_dir / "run_manifest.json").write_text(
-        json.dumps(manifest, ensure_ascii=False, indent=2),
-        encoding="utf-8",
     )
+
+
+def validate_eps(output_path: Path) -> None:
+    """Require embedded Times New Roman Type 3 glyphs in EPS output."""
+    content = output_path.read_text(encoding="latin-1")
+    if "/FontType 3 def" not in content:
+        raise RuntimeError(f"EPS does not contain Type 3 glyphs: {output_path}")
+    if "/FontName /TimesNewRoman" not in content:
+        raise RuntimeError(f"EPS does not use Times New Roman: {output_path}")
+    external_markers = (
+        "%%DocumentNeededResources: font",
+        "%%IncludeResource: font",
+    )
+    if any(marker in content for marker in external_markers):
+        raise RuntimeError(f"EPS depends on an external font: {output_path}")
+
+
+def save_figure(
+    figure: plt.Figure,
+    output_stem: Path,
+    output_formats: tuple[str, ...],
+) -> list[Path]:
+    """Save and validate every requested figure format."""
+    output_paths = []
+    for output_format in output_formats:
+        output_path = output_stem.with_suffix(f".{output_format}")
+        save_options: dict[str, object] = {
+            "format": output_format,
+            "bbox_inches": "tight",
+        }
+        if output_format == "png":
+            save_options["dpi"] = RASTER_DPI
+        figure.savefig(output_path, **save_options)
+        if output_format == "eps":
+            validate_eps(output_path)
+        output_paths.append(output_path)
+    return output_paths
+
+
+def plot_metric(
+    summary: pd.DataFrame,
+    spec: dict[str, object],
+    figure_dir: Path,
+    output_formats: tuple[str, ...],
+) -> list[Path]:
+    """Plot one calculated mechanism metric."""
+    metric_summary = summary.loc[summary["metric"] == spec["key"]]
+    method_count = len(spec["series"])
+    group_centers = np.arange(4, dtype=float)
+    if method_count == 2:
+        bar_width = 0.30
+        offsets = np.asarray((-0.56, 0.56)) * bar_width
+    elif method_count == 3:
+        bar_width = 0.22
+        offsets = np.asarray((-1.05, 0.0, 1.05)) * bar_width
+    else:
+        raise ValueError("Only two- or three-method figures are supported.")
+
+    max_q3 = float(metric_summary["q3"].max())
+    if max_q3 <= 0.0:
+        raise ValueError(f"{spec['key']} quartiles must contain a positive value.")
+
+    figure, axis = plt.subplots(figsize=(9.6, 5.2), constrained_layout=True)
+    for center, group_index in zip(group_centers, range(4)):
+        group = metric_summary.loc[
+            metric_summary["group_index"] == group_index
+        ]
+        if len(group) != method_count:
+            raise ValueError(
+                f"{spec['key']} must contain {method_count} bars per condition."
+            )
+        methods = group["method"].tolist()
+        medians = group["median"].to_numpy(dtype=float)
+        q1 = group["q1"].to_numpy(dtype=float)
+        q3 = group["q3"].to_numpy(dtype=float)
+        positions = center + offsets
+        axis.bar(
+            positions,
+            medians,
+            width=bar_width,
+            color=[METHOD_COLORS[method] for method in methods],
+            edgecolor="#333333",
+            linewidth=0.55,
+            yerr=np.vstack((medians - q1, q3 - medians)),
+            error_kw={
+                "ecolor": "#333333",
+                "elinewidth": 1.2,
+                "capsize": 4.0,
+                "capthick": 1.2,
+            },
+            zorder=3,
+        )
+        # for position, median in zip(positions, medians):
+        #     axis.annotate(
+        #         f"{median:.2f}",
+        #         (position, median),
+        #         xytext=(0, 5),
+        #         textcoords="offset points",
+        #         ha="center",
+        #         va="bottom",
+        #         fontsize=0.72 * PLOT_FONT_SIZE,
+        #         fontweight="bold",
+        #         color="black",
+        #         bbox={
+        #             "facecolor": "white",
+        #             "edgecolor": "none",
+        #             "pad": 0.25,
+        #         },
+        #         zorder=4,
+        #     )
+
+    labels = []
+    for group_index in range(4):
+        first = metric_summary.loc[
+            metric_summary["group_index"] == group_index
+        ].iloc[0]
+        labels.append(
+            f"{first['environment_label']} {int(first['coverage'])}%\n"
+            f"(n={int(first['n'])})"
+        )
+    axis.set_xticks(group_centers, labels)
+    axis.set_xlim(group_centers[0] - 0.55, group_centers[-1] + 0.55)
+    axis.set_ylim(0.0, 1.08 * max_q3)
+    axis.set_ylabel(spec["ylabel"])
+    axis.grid(True, axis="y", linestyle=":", color="#C9CDD2", linewidth=0.8)
+    axis.set_axisbelow(True)
+
+    legend_methods = [method for method, _ in spec["series"]]
+    legend_handles = [
+        Patch(
+            facecolor=METHOD_COLORS[method],
+            edgecolor="#333333",
+            linewidth=0.55,
+            label=METHOD_LABELS[method],
+        )
+        for method in legend_methods
+    ]
+    axis.legend(
+        handles=legend_handles,
+        loc="lower center",
+        bbox_to_anchor=(0.5, 1.0),
+        ncol=method_count,
+        frameon=False,
+    )
+
+    output_paths = save_figure(
+        figure,
+        figure_dir / spec["output_name"],
+        output_formats,
+    )
+    plt.close(figure)
+    return output_paths
 
 
 def main() -> None:
+    """Calculate metrics, write summaries, and generate both figures."""
     args = parse_args()
     if args.spacing_m <= 0.0:
-        raise ValueError("spacing-m must be positive")
+        raise ValueError("spacing-m must be positive.")
+    output_formats = normalized_formats(args.formats)
     output_dir = args.output_dir.resolve()
     output_dir.mkdir(parents=True, exist_ok=True)
 
     conditions = build_conditions()
-    details = collect_pairwise_metrics(
+    details = collect_absolute_metrics(
         conditions,
         args.spacing_m,
     )
-    base_wide = build_base_wide_summary(details)
-    wide_full = build_wide_full_summary(details)
-    validate_outputs(details, base_wide, wide_full, conditions)
+    validate_calculated_metrics(details, conditions)
+    summary = build_summary(details)
 
-    details.to_csv(output_dir / "pairwise_mechanism_metrics.csv", index=False)
-    base_wide.to_csv(output_dir / "base_vs_wide_summary.csv", index=False)
-    wide_full.to_csv(output_dir / "wide_vs_full_summary.csv", index=False)
-    generate_mechanism_plots(base_wide, wide_full, output_dir)
-    write_manifest(
-        output_dir,
-        conditions,
-        args.spacing_m,
-    )
-    print(f"B/C mechanism analysis completed: {output_dir}")
+    details_path = output_dir / "absolute_mechanism_pair_metrics.csv"
+    summary_path = output_dir / "absolute_mechanism_metrics_summary.csv"
+    details.to_csv(details_path, index=False)
+    summary.to_csv(summary_path, index=False)
+
+    configure_plot_style()
+    figure_dir = output_dir / "figures"
+    figure_dir.mkdir(parents=True, exist_ok=True)
+    figure_paths = []
+    for spec in METRIC_SPECS:
+        figure_paths.extend(
+            plot_metric(summary, spec, figure_dir, output_formats)
+        )
+
+    print(f"Pair metrics: {details_path}")
+    print(f"Summary: {summary_path}")
+    for figure_path in figure_paths:
+        print(f"Figure: {figure_path}")
 
 
 if __name__ == "__main__":

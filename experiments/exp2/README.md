@@ -4,6 +4,7 @@ This directory contains the planner implementations shared by the simulated Expe
 - `ppm_planning/`: A* QP (base), A* QP (wide-space), A* QP (full), and BIT* on PPM.
 - `ros2_ws/`: Nav2 Hybrid-A* and Theta* benchmark workspace.
 - `path_analysis/`: aggregation and overview figures for Experiment 2.
+- `astarqp_analysis/`: additional A* QP analysis for Experiment 2.
 
 Experiment-specific behavior is selected by config files, so there is no duplicated `experiments/exp3/` source tree. 
 Run all Python and ROS benchmark commands from the repository root unless a section explicitly changes directory for the ROS workspace build.
